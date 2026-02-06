@@ -1,82 +1,82 @@
 # Wave Binder CLI
 
-CLI tool per supportare lo sviluppo di **Wave Binder**, pensato per semplificare la creazione e la manutenzione del file di input JSON. L’obiettivo è ridurre al minimo gli errori manuali e rendere più rapido l’editing di strutture JSON anche complesse.
+CLI tool designed to support **Wave Binder** development, aimed at simplifying the creation and maintenance of the JSON input file. The goal is to minimize manual errors and speed up the editing of even complex JSON structures.
 
-Il tool fornisce comandi guidati per aggiungere e modificare nodi, con validazioni di base e supporto interattivo quando necessario.
-
----
-
-## Caratteristiche principali
-
-* CLI dedicata alla gestione dell’input JSON di Wave Binder
-* Aggiunta di nuovi nodi con tipologia esplicita (MULTI, COMPLEX, LIST, SIMPLE)
-* Modifica dei nodi esistenti
-* Selezione interattiva del file JSON se non specificato
-* Output chiaro e feedback immediato sulle operazioni
+The tool provides guided commands to add and modify nodes, with basic validation and interactive support when needed.
 
 ---
 
-## Prerequisiti
+## Main features
 
-* **Node.js** >= 18 consigliato
+* Dedicated CLI for managing Wave Binder JSON input
+* Add new nodes with explicit type (MULTI, COMPLEX, LIST, SIMPLE)
+* Edit existing nodes
+* Interactive JSON file selection when not specified
+* Clear output and immediate feedback on operations
+
+---
+
+## Requirements
+
+* **Node.js** >= 18 recommended
 * **npm**
 
-Il pacchetto **non è pubblicato su npm registry**: l’installazione avviene tramite file `.tgz`.
+The package is **not published on the npm registry**: installation is done via a local `.tgz` file.
 
 ---
 
-## Installazione
+## Installation
 
-Dato un pacchetto locale `wave-binder-cli-<version>.tgz`:
+Given a local package `wave-binder-cli-<version>.tgz`:
 
 ```bash
 npm install ./wave-binder-cli-0.0.1.tgz
 ```
 
-Questo renderà il binario disponibile per l’uso tramite `npx`.
+This will make the binary available via `npx`.
 
-> In alternativa, durante lo sviluppo locale, è possibile usare `npm link`, ma **non è il flusso consigliato** per l’utilizzo standard.
+> Alternatively, during local development, `npm link` can be used, but it is **not the recommended flow** for standard usage.
 
 ---
 
-## Utilizzo
+## Usage
 
-Il comando principale è `wbcli`.
+The main command is `wbcli`.
 
-In genere viene lanciato così:
+Typical invocation:
 
 ```bash
 npx wbcli <command> [options]
 ```
 
-Se il file JSON di destinazione non viene specificato, la CLI chiederà interattivamente su quale file lavorare.
+If the target JSON file is not specified, the CLI will interactively ask which file to operate on.
 
 ---
 
-## Comandi disponibili
+## Available commands
 
 ### `add`
 
-Aggiunge un nuovo nodo al file JSON.
+Adds a new node to the JSON file.
 
 ```bash
 npx wbcli add <nodeName> <nodeType> [options]
 ```
 
-**Argomenti**
+**Arguments**
 
-* `nodeName` – nome del nodo da creare
-* `nodeType` – tipo del nodo (`MULTI`, `COMPLEX`, `LIST`, `SIMPLE`)
+* `nodeName` – name of the node to create
+* `nodeType` – node type (`MULTI`, `COMPLEX`, `LIST`, `SIMPLE`)
 
-**Opzioni**
+**Options**
 
 * `-f, --father <node>`
-  Specifica il nodo padre sotto cui inserire il nuovo nodo
+  Specifies the parent node under which the new node will be inserted
 
 * `-j, --json <file>`
-  Percorso del file JSON di destinazione
+  Path to the target JSON file
 
-**Esempio**
+**Example**
 
 ```bash
 npx wbcli add tracks LIST -f root -j input.json
@@ -86,25 +86,25 @@ npx wbcli add tracks LIST -f root -j input.json
 
 ### `edit`
 
-Modifica un nodo esistente nel file JSON.
+Edits an existing node in the JSON file.
 
 ```bash
 npx wbcli edit <nodeName> [options]
 ```
 
-**Argomenti**
+**Arguments**
 
-* `nodeName` – nome del nodo da modificare
+* `nodeName` – name of the node to edit
 
-**Opzioni**
+**Options**
 
 * `-t, --type <nodeType>`
-  Imposta un nuovo tipo per il nodo
+  Sets a new type for the node
 
 * `-j, --json <file>`
-  Percorso del file JSON di destinazione
+  Path to the target JSON file
 
-**Esempio**
+**Example**
 
 ```bash
 npx wbcli edit tracks --type MULTI -j input.json
@@ -112,28 +112,28 @@ npx wbcli edit tracks --type MULTI -j input.json
 
 ---
 
-## Comportamento del tool
+## Tool behavior
 
-* Se il file JSON non viene passato tramite `--json`, il tool avvia una selezione interattiva
-* Le modifiche vengono **salvate direttamente sul file**
-* Al termine di ogni operazione viene stampato un riepilogo dell’esito
-
----
-
-## Stato del progetto
-
-Il progetto è in **fase iniziale** e pensato per uso interno o controllato. L’API della CLI e il formato dei nodi potrebbero evolvere.
+* If the JSON file is not passed via `--json`, the tool starts an interactive selection
+* Changes are **written directly to the file**
+* A summary of the operation result is printed after each command
 
 ---
 
-## Licenza
+## Project status
 
-Tutti i diritti riservati ai proprietari di Wave Binder.
+The project is in an **early stage** and intended for internal or controlled use. The CLI API and node format may evolve over time.
 
 ---
 
-## Note di sviluppo
+## License
 
-* Basato su `commander` per il parsing dei comandi
-* Prompt interattivi realizzati con `inquirer`
-* Output colorato tramite `chalk`
+All rights reserved by the Wave Binder owners.
+
+---
+
+## Development notes
+
+* Based on `commander` for command parsing
+* Interactive prompts implemented with `inquirer`
+* Colored output via `chalk`
